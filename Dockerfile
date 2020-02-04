@@ -1,6 +1,6 @@
 # use a node base image
 FROM node:7-onbuild
-RUN apt-get install lxc
+
 # set maintainer
 LABEL maintainer "mahmed@nisum.com"
 
