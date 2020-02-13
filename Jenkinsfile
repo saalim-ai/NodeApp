@@ -34,13 +34,13 @@ node {
         stage('Deploy to k8s'){
                 sh "chmod +x changeTag.sh"
                 sh "./changeTag.sh 1234"
-                sshagent(['kops-machine']) {
-                    sh "scp -o StrictHostKeyChecking=no services.yml node-app-pod.yml ec2-user@52.66.70.61:/home/ec2-user/"
+                sshagent(['minikube']) {
+                    sh "scp -o StrictHostKeyChecking=no services.yml node-app-pod.yml mahmed@192.168.99.102:/Users/mahmed/"
                     script{
                         try{
-                            sh "ssh ec2-user@52.66.70.61 kubectl apply -f ."
+                            sh "ssh mahmed@192.168.99.102:/Users/mahmed/ kubectl apply -f ."
                         }catch(error){
-                            sh "ssh ec2-user@52.66.70.61 kubectl create -f ."
+                            sh "ssh mahmed@192.168.99.102:/Users/mahmed/ kubectl create -f ."
 			}
 		    }
 		}
