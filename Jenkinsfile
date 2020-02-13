@@ -1,5 +1,8 @@
-node {
-    def app
+pipeline {
+    agent any
+    environment{
+        DOCKER_TAG = getDockerTag()
+    }
 
     stage('Clone repository') {
         /* Cloning the Repository to our Workspace */
@@ -52,5 +55,5 @@ node {
 def getDockerTag(){
     def tag  = sh script: 'git rev-parse HEAD', returnStdout: true
     return tag
- }
 }
+
