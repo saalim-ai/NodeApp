@@ -1,8 +1,6 @@
 node {
     def app
-    environment{
-        DOCKER_TAG = getDockerTag()
-    }
+	
     stage('Clone repository') {
         /* Cloning the Repository to our Workspace */
 
@@ -35,7 +33,7 @@ node {
 
         stage('Deploy to k8s'){
                 sh "chmod +x changeTag.sh"
-                sh "./changeTag.sh ${DOCKER_TAG}"
+                sh "./changeTag.sh 1234"
                 sshagent(['kops-machine']) {
                     sh "scp -o StrictHostKeyChecking=no services.yml node-app-pod.yml ec2-user@52.66.70.61:/home/ec2-user/"
                     script{
@@ -47,9 +45,4 @@ node {
 		    }
 		}
 	}
-}
-
-def getDockerTag(){
-    def tag  = sh script: 'git rev-parse HEAD', returnStdout: true
-    return tag
 }
