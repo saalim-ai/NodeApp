@@ -3,7 +3,7 @@ pipeline {
     environment{
         DOCKER_TAG = getDockerTag()
     }
-
+  stages{
     stage('Clone repository') {
         /* Cloning the Repository to our Workspace */
 
