@@ -6,18 +6,18 @@ pipeline {
   stages{
     stage('Clone repository') {
         /* Cloning the Repository to our Workspace */
-
+	steps{
         checkout scm
     }
-
+  }
     stage('Build image') {
         /* This builds the actual image */
-
+	steps{
         app = docker.build("clouduser11/nodeapp")
     }
-
+  }
     stage('Test image') {
-        
+        steps{
         app.inside {
             echo "Tests passed"
         }
@@ -27,6 +27,7 @@ pipeline {
         /* 
 			You would need to first register with DockerHub before you can push images to your account
 		*/
+	    steps{
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
