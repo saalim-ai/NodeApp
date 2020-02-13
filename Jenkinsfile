@@ -32,3 +32,4 @@ node {
                 echo "Trying to Push Docker Build to DockerHub"
     }
 }
+}
