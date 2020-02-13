@@ -30,4 +30,27 @@ node {
             } 
                 echo "Trying to Push Docker Build to DockerHub"
     }
+        stage('Deploy to k8s'){
+            steps{
+                sh "chmod +x changeTag.sh"
+                sh "./changeTag.sh ${DOCKER_TAG}"
+                sshagent(['kops-machine']) {
+                    sh "scp -o StrictHostKeyChecking=no services.yml node-app-pod.yml mahmed@192.168.99.102:/Users/mahmed"
+                    script{
+                        try{
+                            sh "ssh mahmed@192.168.99.102 kubectl apply -f ."
+                        }catch(error){
+                            sh "ssh mahmed@192.168.99.102 kubectl create -f ."
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+def getDockerTag(){
+    def tag  = sh script: 'git rev-parse HEAD', returnStdout: true
+    return tag
+ }
 }
