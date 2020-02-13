@@ -35,12 +35,12 @@ node {
                 sh "chmod +x changeTag.sh"
                 sh "./changeTag.sh 1234"
                 sshagent(['minikube']) {
-                    sh "scp -o StrictHostKeyChecking=no services.yml node-app-pod.yml mahmed@192.168.99.102:/Users/mahmed/"
+                    sh "scp -o StrictHostKeyChecking=no services.yml node-app-pod.yml minikube@192.168.99.102:/home/"
                     script{
                         try{
-                            sh "ssh mahmed@192.168.99.102:/Users/mahmed/ kubectl apply -f ."
+                            sh "ssh minikube@192.168.99.102:/home/ kubectl apply -f ."
                         }catch(error){
-                            sh "ssh mahmed@192.168.99.102:/Users/mahmed/ kubectl create -f ."
+                            sh "ssh minikube@192.168.99.102:/home/ kubectl create -f ."
 			}
 		    }
 		}
