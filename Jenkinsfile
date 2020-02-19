@@ -30,7 +30,7 @@ node {
             } 
                 echo "Trying to Push Docker Build to DockerHub"
     }
-
+/*
         stage('Deploy to k8s'){
                 sh "chmod +x changeTag.sh"
                 sh "./changeTag.sh 1234"
@@ -44,5 +44,5 @@ node {
 			}
 		    }
 		}
-	}
+	}*/
 }
