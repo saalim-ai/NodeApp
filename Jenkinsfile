@@ -34,15 +34,15 @@ node {
         stage('Deploy to k8s'){
                 sh "chmod +x changeTag.sh"
                 sh "./changeTag.sh 1234"
-                sshagent(['cloud_user']) {
-                    sh "scp -o StrictHostKeyChecking=no services.yml node-app-pod.yml cloud_user@3.85.106.209:/home/cloud_user/"
-                    script{
-                        try{
+                /*sshagent(['cloud_user']) {
+                  */  sh "scp -o StrictHostKeyChecking=no services.yml node-app-pod.yml cloud_user@3.85.106.209:/home/cloud_user/"
+                    /*script{
+                        try{*/
                             sh "ssh cloud_user@3.85.106.209:/home/cloud_user/ kubectl apply -f ."
-                        }catch(error){
-                            sh "ssh cloud_user@3.85.106.209:/home/cloud_user/ kubectl create -f ."
+                        /*}catch(error){
+                          */  sh "ssh cloud_user@3.85.106.209:/home/cloud_user/ kubectl create -f ."
 			}
 		    }
-		}
+		}*/
 	}
 }
