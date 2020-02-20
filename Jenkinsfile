@@ -41,7 +41,7 @@ node {
                             sh "ssh cloud_user@3.85.106.209:/home/cloud_user/ kubectl apply -f ."
                         /*}catch(error){
                           */  sh "ssh cloud_user@3.85.106.209:/home/cloud_user/ kubectl create -f ."
-			}
+			/*}
 		    }
 		}*/
 	}
