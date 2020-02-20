@@ -36,15 +36,15 @@ node {
                 sh "./changeTag.sh 1234"
                 /*sshagent(['cloud_user']) {
                   */  
-		ssh "scp -o StrictHostKeyChecking=no services.yml node-app-pod.yml cloud_user@3.85.106.209:/home/cloud_user/"
+		ssh "scp -o StrictHostKeyChecking=no services.yml node-app-pod.yml cloud_user@54.80.59.122:/home/cloud_user/"
                     /*script{
                         try{*/
                            echo "K81" 
-		ssh "ssh cloud_user@3.85.106.209:/home/cloud_user/ kubectl apply -f ."
+		ssh "ssh cloud_user@54.80.59.122:/home/cloud_user/ kubectl apply -f ."
                         /*}catch(error){
                           */  
 				echo "K82"
-		ssh "ssh cloud_user@3.85.106.209:/home/cloud_user/ kubectl create -f ."
+		ssh "ssh cloud_user@54.80.59.122:/home/cloud_user/ kubectl create -f ."
 			/*}
 		    }
 		}*/
